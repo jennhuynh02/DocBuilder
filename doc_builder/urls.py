@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth.models import User
+
+from django.conf.urls import include
+from django.contrib.auth import views as authviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/user/login/', authviews.LoginView.as_view(template_name = 'base.html')),
+    path('', include('frontend.urls')),
 ]
